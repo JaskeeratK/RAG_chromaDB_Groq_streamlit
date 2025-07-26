@@ -1,6 +1,6 @@
 # app.py
 import streamlit as st
-from rag_core import create_chroma_vectorstore_from_file, query_rag_with_groq
+from rag_core import create_faiss_vectorstore_from_file, query_rag_with_groq
 import tempfile
 import os
 
@@ -21,7 +21,7 @@ if uploaded_file:
         tmp_path = tmp_file.name
 
     try:
-        st.session_state.vectorstore, st.session_state.embedder = create_chroma_vectorstore_from_file(tmp_path)
+        st.session_state.vectorstore, st.session_state.embedder = create_faiss_vectorstore_from_file(tmp_path)
         st.session_state.filename = uploaded_file.name
         st.success(f"✅ Vector store created for `{uploaded_file.name}`.")
     except Exception as e:
