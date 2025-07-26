@@ -47,19 +47,18 @@ def load_docs(file_path: str):
     return loader.load()
 
 # Create Chroma Vectorstore
-def create_chroma_vectorstore_from_file(file_path):
+from langchain_community.vectorstores import FAISS
+
+def create_faiss_vectorstore_from_file(file_path):
     documents = load_docs(file_path)
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     docs = text_splitter.split_documents(documents)
 
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-    vectorstore = Chroma.from_documents(
-        docs,
-        embedding=embeddings,
-        persist_directory=None  # <-- disables SQLite persistence
-    )
+    vectorstore = FAISS.from_documents(docs, embedding=embeddings)
 
     return vectorstore, embeddings
+
 
 # Manual RAG Query
 def query_rag_with_groq(query: str, vectorstore: Chroma, embedder) -> str:
