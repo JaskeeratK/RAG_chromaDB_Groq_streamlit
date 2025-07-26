@@ -10,13 +10,14 @@ from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 import os
 
-# Load .env file
-load_dotenv()
+import streamlit as st
 
+# ✅ Use st.secrets instead
 llm = ChatGroq(
-    api_key=os.getenv("GROQ_API_KEY"),  # make sure GROQ_API_KEY is set
+    api_key=st.secrets["GROQ_API_KEY"],
     model_name="llama3-8b-8192"
 )
+
 
 # Custom prompt
 prompt_template = PromptTemplate(
