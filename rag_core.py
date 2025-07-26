@@ -53,7 +53,11 @@ def create_chroma_vectorstore_from_file(file_path):
     docs = text_splitter.split_documents(documents)
 
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-    vectorstore = Chroma.from_documents(docs, embedding=embeddings)
+    vectorstore = Chroma.from_documents(
+        docs,
+        embedding=embeddings,
+        persist_directory=None  # <-- disables SQLite persistence
+    )
 
     return vectorstore, embeddings
 
