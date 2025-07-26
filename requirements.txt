@@ -1,7 +1,10 @@
 streamlit
-langchain
 chromadb
-PyPDF2
-pandas
+langchain
+langchain-community
+langchain-groq
+python-dotenv
+huggingface-hub
 sentence-transformers
-groq
+pypdf
+pandas
