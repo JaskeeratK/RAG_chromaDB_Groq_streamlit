@@ -1,6 +1,7 @@
 streamlit
 chromadb
 langchain
+langchain-core
 langchain-text-splitters
 langchain-community
 langchain-groq
