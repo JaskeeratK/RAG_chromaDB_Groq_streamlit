@@ -26,8 +26,9 @@ import streamlit as st
 # ✅ Use st.secrets instead
 llm = ChatGroq(
     api_key=st.secrets["GROQ_API_KEY"],
-    model_name="llama3-8b-8192"
+    model_name="llama-3.1-8b-instant"
 )
+
 
 
 # Custom prompt
